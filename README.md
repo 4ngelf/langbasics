@@ -1,0 +1,34 @@
+# ROT13
+
+ROT13 encoding utility.
+
+## Usage
+
+Encode arguments with ROT13.
+
+```sh
+rot13 ROT13 Utility
+# EBG13 Hgvyvgl
+```
+
+You can pass `-` character as an argument to encode stdin.
+This is also the default behaviour without arguments.
+
+```sh
+echo "shining" | rot13 Stars - in the sky
+# Fgnef fuvavat va gur fxl
+
+echo "Hello world!" | rot13
+# Uryyb jbeyq!
+```
+
+## Installation
+
+```sh
+git clone https://github.com/4ngelf/rot13.git rot13
+cargo install --path rot13
+```
+
+## License
+
+[MIT license](./LICENSE)
