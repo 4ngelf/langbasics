@@ -26,9 +26,11 @@ echo "Hello world!" | rot13
 
 ## Installation
 
+### Rust version
+
 ```sh
 git clone https://github.com/4ngelf/rot13.git rot13
-cargo install --path rot13
+cargo install --path rot13/rust
 ```
 
 ## License
