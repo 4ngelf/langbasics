@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "rot13"
+description = "ROT13 encoding utility."
+version = "1.0.0"
+authors = ["Angel Fuenmayor <32184965+4ngelf@users.noreply.github.com>"]
+readme = "../README.md"
+repository = "https://github.com/4ngelf/rot13"
+license = "MIT"
+packages = [
+    { include = "rot13", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
