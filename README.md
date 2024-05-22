@@ -2,6 +2,8 @@
 
 ROT13 encoding utility.
 
+Also a project to try to make the same implementation in different programming languages.
+
 ## Usage
 
 Encode arguments with ROT13.
