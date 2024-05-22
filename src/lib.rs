@@ -39,7 +39,7 @@ mod tests {
     use super::*;
 
     const ROTATED: &str = "NOPQRSTUVWXYZABCDEFGHIJKLM";
-    const ROTATED_LOWER: &str = ROTATED.to_ascii_lowercase().as_str();
+    const ROTATED_LOWER: &str = "nopqrstuvwxyzabcdefghijklm";
 
     #[test]
     fn rot13_random_chars() {
@@ -65,7 +65,7 @@ mod tests {
 
     #[test]
     fn rot13_string() {
-        let operand: String = ('A'..='Z').chain('A'..='Z').collect();
+        let operand: String = ('A'..='Z').chain('a'..='z').collect();
         let expected: String = ROTATED.chars().chain(ROTATED_LOWER.chars()).collect();
         assert_eq!(operand.rot13(), expected)
     }

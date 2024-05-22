@@ -13,8 +13,8 @@ fn parse_args(args: &Vec<String>) -> Operation {
         return Operation::OnlyStdin;
     }
 
-    for option in args {
-        match option.as_str() {
+    for arg in args {
+        match arg.as_str() {
             "-h" | "--help" => return Operation::Help,
             "-v" | "--version" => return Operation::Version,
             "--" => return Operation::Normal,
