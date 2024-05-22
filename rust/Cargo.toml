@@ -1,7 +1,13 @@
 [package]
 name = "rot13"
+description = "ROT13 encoding utility."
 version = "1.0.0"
 edition = "2021"
+authors = ["Angel Fuenmayor <32184965+4ngelf@users.noreply.github.com>"]
+readme = "../README.md"
+repository = "https://github.com/4ngelf/rot13"
+license = "MIT"
+license-file = "../LICENSE"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
