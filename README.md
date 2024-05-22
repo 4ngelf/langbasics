@@ -13,7 +13,7 @@ rot13 ROT13 Utility
 # EBG13 Hgvyvgl
 ```
 
-You can pass `-` character as an argument to encode stdin.
+You can pass the `-` character as an argument to encode stdin.
 This is also the default behaviour without arguments.
 
 ```sh
