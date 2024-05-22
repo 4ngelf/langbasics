@@ -38,8 +38,7 @@ impl Rot13 for str {
 mod tests {
     use super::*;
 
-    const ROTATED: &str = "NOPQRSTUVWXYZABCDEFGHIJKLM";
-    const ROTATED_LOWER: &str = "nopqrstuvwxyzabcdefghijklm";
+    const ROTATED: &str = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
     #[test]
     fn rot13_random_chars() {
@@ -50,15 +49,8 @@ mod tests {
     }
 
     #[test]
-    fn rot13_upper_chars() {
-        for (character, expected) in ('A'..='Z').zip(ROTATED.chars()) {
-            assert_eq!(character.rot13(), expected);
-        }
-    }
-
-    #[test]
-    fn rot13_lower_chars() {
-        for (character, expected) in ('a'..='z').zip(ROTATED_LOWER.chars()) {
+    fn rot13_chars() {
+        for (character, expected) in ('A'..='Z').chain('a'..='z').zip(ROTATED.chars()) {
             assert_eq!(character.rot13(), expected);
         }
     }
@@ -66,7 +58,7 @@ mod tests {
     #[test]
     fn rot13_string() {
         let operand: String = ('A'..='Z').chain('a'..='z').collect();
-        let expected: String = ROTATED.chars().chain(ROTATED_LOWER.chars()).collect();
+        let expected: String = String::from(ROTATED);
         assert_eq!(operand.rot13(), expected)
     }
 }
