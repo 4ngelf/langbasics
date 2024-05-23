@@ -1,21 +1,63 @@
-#!/usr/bin/bash
-# TODO: Reimplement whole script in python
-#       Use the tomllib library
-require(){
-    status=0
-    for program; do
-        if ! command -v "$program" >/dev/null 2>&1; then
-            echo "$program required" >&2
-            status=1
-        fi
-    done
-    [[ "$status" == 0 ]] || exit 1
-}
+#!/usr/bin/env python3
+import sys
+from shutil import which
+from subprocess import run as run_default
+from pathlib import Path
+import tomllib
 
-require python3 pip poetry
 
-ROOT=$(dirname "$(dirname "$(realpath "$0")")")
-VERSION=$(grep 'version.?*=.?*' "${ROOT}/pyproject.toml" | grep -o '[0-9]*\.[0-9]*\.[0-9]*')
-poetry install \
-    && poetry build -f sdist -o "${ROOT}/dist" \
-    && pip install "${ROOT}/dist/rot13-${VERSION}.tar.gz"
+ROOT = Path(__name__).parent.parent
+DIST_PATH = ROOT / "dist"
+
+
+def run(*args: str, **kwargs):
+    run_default(args, stdout=sys.stdout, stderr=sys.stderr, check=True, cwd=ROOT, **kwargs)
+
+
+def deep_get(dictionary: dict, *keys: str, default=None) -> any:
+    for key in keys:
+        try:
+            dictionary = dictionary[key]
+        except:
+            return default
+    return dictionary
+
+
+def require(*programs: str):
+    missing = False
+    for program in programs:
+        if which(program) is None:
+            print(f"required: {program}", file=sys.stderr)
+            missing = True
+
+    if missing:
+        sys.exit(1)
+
+
+def dist_file() -> Path:
+    with Path(ROOT / "pyproject.toml").open("rb") as f:
+        conf = tomllib.load(f)
+    
+    pkg_name = deep_get(conf, "tool", "poetry", "name")
+    version = deep_get(conf, "tool", "poetry", "version")
+
+    if type(pkg_name) is not str or type(version) is not str:
+        print(f"tool.poetry.name or tool.poetry.version missing in {ROOT/"pyproject.toml"}", file=sys.stderr)
+        sys.exit(1)
+    
+    return DIST_PATH / f"{pkg_name}-{version}.tar.gz"
+
+
+def main():
+    require("python3", "pip3", "poetry")
+
+    dist = dist_file()
+    run("poetry", "install")
+    run("poetry", "build", "--format", "sdist", "--output", DIST_PATH)
+    run("pip", "install", dist)
+
+    print("Installation succesful!")
+    
+
+if __name__ == '__main__':
+    main()
