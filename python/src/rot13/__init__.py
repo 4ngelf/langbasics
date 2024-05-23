@@ -9,4 +9,4 @@ _ROTATED_MAP = dict(
 
 
 def rot13(text: str):
-    return "".join(map(lambda ch: _ROTATED_MAP[ch], text))
+    return "".join(map(lambda ch: _ROTATED_MAP.get(ch, ch), text))
