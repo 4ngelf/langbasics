@@ -1,0 +1,21 @@
+#!/usr/bin/bash
+# TODO: Reimplement whole script in python
+#       Use the tomllib library
+require(){
+    status=0
+    for program; do
+        if ! command -v "$program" >/dev/null 2>&1; then
+            echo "$program required" >&2
+            status=1
+        fi
+    done
+    [[ "$status" == 0 ]] || exit 1
+}
+
+require python3 pip poetry
+
+ROOT=$(dirname "$(dirname "$(realpath "$0")")")
+VERSION=$(grep 'version.?*=.?*' "${ROOT}/pyproject.toml" | grep -o '[0-9]*\.[0-9]*\.[0-9]*')
+poetry install \
+    && poetry build -f sdist -o "${ROOT}/dist" \
+    && pip install "${ROOT}/dist/rot13-${VERSION}.tar.gz"
