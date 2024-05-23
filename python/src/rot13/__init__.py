@@ -1,5 +1,7 @@
 """ROT13 encoding utility"""
 
+VERSION = "1.0.0"
+
 _ROTATED_MAP = dict(
     zip(
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",

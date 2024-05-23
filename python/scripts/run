@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-exec poetry run rot13
+exec poetry run rot13 "$@"
