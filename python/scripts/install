@@ -9,22 +9,19 @@ run(){
     "$@"
 }
 
-for program in python poetry pipx; do
+for program in python pipx poetry; do
     if ! command -v "$program" >/dev/null 2>&1; then
         echo "required: $program" >&2
         missing=1
     fi
 done
-[[ -z "$missing" ]] || exit 1
+[[ -n "$missing" ]] && exit 1
 
 ROOT_DIR=$(dirname "$(dirname "$(realpath "$0")")")
-cd "$ROOT_DIR" || error "error finding project root"
+cd "$ROOT_DIR" || error "couldn't find project root"
 [[ -d ./dist ]] && rm -rf ./dist
 run poetry install --only main
-run poetry build --format sdist -o ./dist
-
-TARGZ=$(find ./dist -mindepth 1 -maxdepth 1 -name '*tar.gz' -print -quit)
-[[ -r "$TARGZ" ]] || error "somehow the tarball was lost"
-run pipx install "$TARGZ"
+run poetry build --format wheel -o ./dist
+run pipx install ./dist/*
 
 echo "install: Installation complete!"
