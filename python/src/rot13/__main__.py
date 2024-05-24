@@ -25,7 +25,7 @@ def encode_stdin():
         print(rot13(line.rstrip("\n")))
 
 
-def main():
+def encode():
     for arg in parse_args().TEXT:
         if arg == "-":
             encode_stdin()
@@ -33,5 +33,12 @@ def main():
         print(rot13(arg))
 
 
+def main():
+    try:
+        encode()
+    except KeyboardInterrupt:
+        return 1
+
+
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
