@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-pipx uninstall rot13
+exec pipx uninstall rot13
