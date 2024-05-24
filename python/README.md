@@ -26,10 +26,10 @@ echo "Hello world!" | rot13
 
 ## Installation
 
-1. [Install poetry][poetry_url] and [pipx][pipx_url]
+1. Install [:link:__poetry__][poetry_url] and [:link: __pipx__][pipx_url]
 
-poetry_url:[https://python-poetry.org/docs/#installation]
-pipx_url:[https://pipx.pypa.io/stable/installation/]
+[poetry_url]:https://python-poetry.org/docs/#installation
+[pipx_url]:https://pipx.pypa.io/stable/installation/
 
 2. Run these commands:
 
