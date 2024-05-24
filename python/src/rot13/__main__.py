@@ -11,7 +11,10 @@ def parse_args():
         prog=prog, description="ROT13 encoding utility"
     )
     parser.add_argument(
-        "-v", "--version", action="version", version=f"%(prog)s v{VERSION}"
+        "-v",
+        "--version",
+        action="version",
+        version=f"%(prog)s(python) v{VERSION}",
     )
     parser.add_argument("TEXT", nargs="*", default="-", help="text to encode")
     return parser.parse_args()

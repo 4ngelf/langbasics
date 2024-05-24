@@ -46,7 +46,7 @@ fn encode_args(args: &Vec<String>) {
 
 fn show_help() {
     println!(
-        "ROT13 enconding utility
+        "ROT13 encoding utility
 
 Usage: rot13 [TEXT]...
 
@@ -57,7 +57,7 @@ Options:
 }
 
 fn show_version() {
-    println!("{} v{}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"))
+    println!("{}(rust) v{}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"))
 }
 
 fn main() {
