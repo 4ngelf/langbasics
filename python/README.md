@@ -26,24 +26,16 @@ echo "Hello world!" | rot13
 
 ## Installation
 
-1. [Install poetry](https://python-poetry.org/docs/#installation)
+1. [Install poetry][poetry_url] and [pipx][pipx_url]
 
-```sh
-VENV_PATH="${HOME}/.local/share/pypoetry"
-mkdir -p "$VENV_PATH" \
-    && python3 -m venv "$VENV_PATH" \
-    && "$VENV_PATH"/bin/pip install -U pip setuptools \
-    && "$VENV_PATH"/bin/pip install poetry
-```
+poetry_url:[https://python-poetry.org/docs/#installation]
+pipx_url:[https://pipx.pypa.io/stable/installation/]
 
-2. Run this commands:
+2. Run these commands:
 
 ```sh
 git clone https://github.com/4ngelf/rot13.git rot13 \
-    && cd rot13/python \
-    && poetry install \
-    && poetry build \
-    && pip install dist/rot13-1.0.0-py3-none-any.whl
+    && rot13/python/scripts/install
 ```
 
 ## License
