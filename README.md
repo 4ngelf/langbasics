@@ -40,7 +40,8 @@ In order to meet the requirements mentioned above, each implementation tries to 
     │   ├── docs   -> used to generate docs if available
     │   ├── src    -> library source
     │   └── tests
-    └── README.md  -> Explain how to compile/run, install, test and do other task for the app/library
+    └── README.md  -> Explain how to compile/run, install, test
+                      and do other task for the app/library
    ```
 
 ### 2. Library API
